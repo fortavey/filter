@@ -4,12 +4,118 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width">
     <title>Grid</title>
-    <script type='text/javascript' src='js/jquery/jquery.js'></script>
-    <script type='text/javascript' src='js/jquery/jquery-migrate.min.js'></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Hello</h1>
-    <script type='text/javascript' src='js/app.js'></script>
+    <header class="site-header">
+        <div class="wrapper">
+            <div class="top-line">
+                <div class="logo">
+                    <a href="/"><img src="../img/logo.svg" alt="logo"></a>
+                </div>
+                <div class="info-menu">
+                    <div class="info">
+                        <div class="location">
+                            <img src="../img/map.svg" alt="icon">Красноярск
+                        </div>
+                        <div class="contact">
+                            <img src="../img/phone.svg" alt="icon">+7(391)228-70-75
+                        </div>
+                        <div class="contact">
+                            <img src="../img/email.svg" alt="icon">office@alex-promo.ru
+                        </div>
+                    </div>
+                    <div class="menu">
+                        <nav>
+                            <ul>
+                                <li><a href="#">Типы нанесения</a></li>
+                                <li><a href="#">Праздники</a></li>
+                                <li><a href="#">Контакты</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <div class="bottom-line">
+                <div class="search">
+                    <div class="catalog-button">
+                        <div class="cat-dots"><span></span><span></span><span></span></div>
+                        <div class="cat-name">Каталог</div>
+                    </div>
+                    <form action="" class="serchform">
+                        <input type="text" placeholder="Поиск">
+                        <img src="../img/filter.svg" alt="icon">
+                        <button type="submit"><img src="../img/search.svg" alt="icon"></button>
+                    </form>
+                </div>
+                <div class="login">
+                    <div class="card same-icon">
+                        <a href="#"><img src="../img/card.svg" alt="icon"><span>2</span></a>
+                    </div>
+                    <div class="like same-icon">
+                        <a href="#"><img src="../img/like.svg" alt="icon"><span>2</span></a>
+                    </div>
+                    <div class="diller">
+                        <a href="#"><img src="../img/diller.svg" alt="icon">Стать диллером</a>
+                    </div>
+                    <div class="login-btn"><a href="#">Войти</a></div>
+                    <div class="mobile-menu"><span></span><span></span><span></span></div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="wrapper">
+        <div class="breadcrumbs"><a href="/">Главная</a> > Типы нанесения</div>
+        <h1>Типы нанесения</h1>
+        <div class="desc">
+            В этом разделе вы сможете ознакомиться со всеми типами нанесения логотипов и изображений на бизнес-подарки, которые мы предлагаем. Здесь вы узнаете все плюсы и минусы каждого способа нанесения, а также сможете выбрать идеальное нанесение для вашего изделия.
+        </div>
+        <h2 class="filter-title">Фильтрация типов нанесения по материалам изделий:</h2>
+        <div class="filter">
+            <div class="filter-buttons">
+                <div class="filter-button"
+                        :class="addActiveClass(material.id)"
+                        v-for="material in material"
+                        @click="clickOnMaterial(material.id)">
+                    <img :src="material.img" alt="icon">{{ material.name }}
+                </div>
+            </div>
+            <div class="products">
+                <div class="product-item" v-for="product in render">
+                    <img :src="product.img" alt="product" class="product-item__img">
+                    <div class="product-item__title">{{ product.name }}</div>
+                    <div class="product-item__icons">
+                        <img :src="getIcon(img).img" alt="icon" v-for="img in product.material">
+                    </div>
+                    <div class="product-item__icons-name">
+                        <span v-for="img in product.material">{{ getIcon(img).name }}, </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="site-footer">
+        <div class="footer-menu-line">
+            <div class="wrapper">
+                <nav>
+                    <ul>
+                        <li><a href="#">Главная</a></li>
+                        <li><a href="#">О компании</a></li>
+                        <li><a href="#">Типы нанесения</a></li>
+                        <div class="social">
+                            <a href="#"><img src="../img/fb.svg" alt="fb"></a>
+                            <a href="#"><img src="../img/vk.svg" alt="vk"></a>
+                        </div>
+                        <li><a href="#">Блог</a></li>
+                        <li><a href="#">Стать дилером</a></li>
+                        <li><a href="#">Контакты</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+        <div class="copyright">© 2020 «Alex Promo». Все права защищены</div>
+    </footer>
+<script type='text/javascript' src='js/app.js'></script>
 </body>
 </html>
